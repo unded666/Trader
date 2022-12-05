@@ -1,6 +1,7 @@
 import yfinance as yf
 from datetime import datetime
 import pandas as pd
+import wbgapi as wb
 
 
 def download_data(ticker: str,
@@ -26,6 +27,22 @@ def download_data(ticker: str,
         found = False
 
     return download_tick, tick_data, found
+
+
+def download_economic_data() -> pd.DataFrame:
+    """
+
+    :return:
+    """
+    gdp_ppp = 'NY.GDP.PP.KD'
+    working_population = 'SP.POP.1564.TO'
+    country_uk = 'GBR'
+    country_usa = 'USA'
+
+    df = wb.data.DataFrame([gdp_ppp, working_population], [country_usa, country_uk],
+                           columns='series', numericTimeKeys=True).reset_index()
+
+    return df
 
 
 if __name__ == '__main__':
