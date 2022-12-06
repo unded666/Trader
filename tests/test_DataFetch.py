@@ -1,6 +1,8 @@
 from unittest import TestCase
 from datetime import datetime, timedelta
-from DataManagement.DataFetch import download_data
+from DataManagement.DataFetch import (download_data,
+                                      download_economic_data)
+
 
 TEST_TICKERS = ['GOOG', 'AAPL', 'MSFT', 'ULVR.L']
 
@@ -31,10 +33,22 @@ class DataTest(TestCase):
         """
         Tests that the economic downloads from the world bank api work as intended.
         Tests the following:
+        - USA data downloaded
+        - GBR data downloaded
         - working age population is downloaded correctly
         - pricing parity GDP is downloaded correctly
+        - gdp growth % is downloaded and renamed correctly
         """
 
-        pass
+        eco_df = download_economic_data()
+        self.assertGreater(eco_df.shape[0], 0, f"no data downloaded from wbgapi")
+        economies = ['GBR', 'USA']
+        downloaded_economies = list(eco_df.economy.unique())
+        for eco in economies:
+            self.assertTrue(eco in downloaded_economies, f"{eco} not downloaded from wbgapi")
+        features = list(eco_df.columns)
+        for feature in ['GDP (PPP-2017)', 'Population (working age)', 'GDP growth (annual %)']:
+            self.assertTrue(feature in features, f"{feature} not downloaded")
+
 
 
