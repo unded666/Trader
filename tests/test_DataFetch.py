@@ -23,7 +23,7 @@ class DataTest(TestCase):
         for ticker in TEST_TICKERS:
             _, tick_data, found = download_data(ticker, start_date=dt_from, end_date=dt_today)
             self.assertGreater(tick_data.shape[0], 0, f"no data downloaded for {ticker} for a 1-week period")
-            self.assertTrue(found, f"download flag for {ticker} incorrecly flagged as {found}")
+            self.assertTrue(found, f"download flag for {ticker} incorrectly flagged as {found}")
         _, tick_data, _ = download_data(TEST_TICKERS[2])
         self.assertGreater(tick_data.shape[0], 0, f"maximum time download failed for {TEST_TICKERS[2]}")
         _, _, found = download_data('NOT_A_TICKER')
@@ -49,6 +49,3 @@ class DataTest(TestCase):
         features = list(eco_df.columns)
         for feature in ['GDP (PPP-2017)', 'Population (working age)', 'GDP growth (annual %)']:
             self.assertTrue(feature in features, f"{feature} not downloaded")
-
-
-

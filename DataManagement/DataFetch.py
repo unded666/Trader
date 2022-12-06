@@ -51,6 +51,4 @@ def download_economic_data() -> pd.DataFrame:
 
 
 if __name__ == '__main__':
-    wbdata = download_economic_data()
-
     pass
