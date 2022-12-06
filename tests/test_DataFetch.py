@@ -21,11 +21,11 @@ class DataTest(TestCase):
         dt_today = datetime.now()
         dt_from = dt_today - timedelta(days=7)
         for ticker in TEST_TICKERS:
-            _, Tick_data, found = download_data(ticker, start_date=dt_from, end_date=dt_today)
-            self.assertGreater(Tick_data.shape[0], 0, f"no data downloaded for {ticker} for a 1-week period")
+            _, tick_data, found = download_data(ticker, start_date=dt_from, end_date=dt_today)
+            self.assertGreater(tick_data.shape[0], 0, f"no data downloaded for {ticker} for a 1-week period")
             self.assertTrue(found, f"download flag for {ticker} incorrecly flagged as {found}")
-        _, Tick_data, _ = download_data(TEST_TICKERS[2])
-        self.assertGreater(Tick_data.shape[0], 0, f"maximum time download failed for {TEST_TICKERS[2]}")
+        _, tick_data, _ = download_data(TEST_TICKERS[2])
+        self.assertGreater(tick_data.shape[0], 0, f"maximum time download failed for {TEST_TICKERS[2]}")
         _, _, found = download_data('NOT_A_TICKER')
         self.assertFalse(found, f"false ticker incorrectly returned {found}")
 
