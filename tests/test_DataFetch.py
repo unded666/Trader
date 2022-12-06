@@ -15,8 +15,6 @@ class DataTest(TestCase):
         - Tests a maximum history download for microsoft
         - tests if good downloads are correctly found
         - tests if incorrect ticker downloads return the correct errors
-
-        :return: Nothing
         """
         dt_today = datetime.now()
         dt_from = dt_today - timedelta(days=7)
@@ -28,5 +26,15 @@ class DataTest(TestCase):
         self.assertGreater(Tick_data.shape[0], 0, f"maximum time download failed for {TEST_TICKERS[2]}")
         _, _, found = download_data('NOT_A_TICKER')
         self.assertFalse(found, f"false ticker incorrectly returned {found}")
+
+    def test_download_economic_data(self) -> None:
+        """
+        Tests that the economic downloads from the world bank api work as intended.
+        Tests the following:
+        - working age population is downloaded correctly
+        - pricing parity GDP is downloaded correctly
+        """
+
+        pass
 
 

@@ -34,13 +34,15 @@ def download_economic_data() -> pd.DataFrame:
 
     :return:
     """
-    gdp_ppp = 'NY.GDP.PP.KD'
+    gdp_ppp = 'NY.GDP.MKTP.PP.KD'
     working_population = 'SP.POP.1564.TO'
     country_uk = 'GBR'
     country_usa = 'USA'
 
     df = wb.data.DataFrame([gdp_ppp, working_population], [country_usa, country_uk],
                            columns='series', numericTimeKeys=True).reset_index()
+    translator = {gdp_ppp: 'GDP (PPP-2017)', working_population: 'Population (working age)'}
+    df = df.rename(columns=translator)
 
     return df
 
