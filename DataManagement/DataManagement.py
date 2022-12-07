@@ -13,3 +13,13 @@ def save_data(target: str, save_data: pd.DataFrame) -> None:
 
     pass
 
+def load_data(target: str) -> pd.DataFrame:
+    """
+    loads a pickled dataframe from the specified target location and returns an
+    unpickled dataframe
+
+    :param target: target file of the format directory/filename
+    :return: loaded data
+    """
+
+    return None
