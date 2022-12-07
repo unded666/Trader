@@ -50,3 +50,19 @@ class data_combinator:
         """
 
         return None
+
+    def add_new_data_to_historical(self,
+                                   historical: pd.DataFrame,
+                                   new_tic: Ticker,
+                                   new_history: pd.DataFrame) -> pd.DataFrame:
+        """
+        reshapes the new historical data new_history using the ticker object new_tic,
+        which is then appended on to the data in historical, returning the combined dataframe
+
+        :param historical: dataframe with a new stock's prices
+        :param new_tic: Ticker object with descriptive information about the new data
+        :param new_history: existing historical data
+        :return: combined dataframe
+        """
+
+        return None
