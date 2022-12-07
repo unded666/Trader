@@ -1,5 +1,6 @@
 import pandas as pd
 import pickle
+from yfinance import Ticker
 
 def save_data(target: str, data: pd.DataFrame) -> None:
     """
@@ -28,3 +29,24 @@ def load_data(target: str) -> pd.DataFrame:
         df = pickle.load(fil)
 
     return df
+
+class data_combinator:
+
+    def __init__(self) -> None:
+        """
+
+        """
+
+        pass
+
+    def reshape_data (self, tic: Ticker, history: pd.DataFrame) -> pd.DataFrame:
+        """
+        takes the historical data from the history dataframe and adds a column
+        from the ticker object that has the actual ticker, for use in combining
+        data from multiple equities
+
+        :param history: dataframe with the actual closing prices of shares
+        :return: dataframe with the necessary additions
+        """
+
+        return None
