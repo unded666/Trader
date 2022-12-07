@@ -29,4 +29,13 @@ class DManTest(TestCase):
         files = os.listdir(self.location)
         self.assertTrue(os.path.basename(self.write_target) in files, f"test file not correctly written")
 
+    def test_load_data(self):
+
+        loaded_data = load_data(self.read_target)
+        rows, cols = loaded_data.shape
+        expected_rows = 4609
+        expected_cols = 7
+        self.assertEqual(rows, expected_rows, f"incorrect data read in, expected {expected_rows} rows, got {rows}")
+        self.assertEqual(cols, expected_cols, f"incorrect data read in, expected {expected_cols} rows, got {cols}")
+
 
