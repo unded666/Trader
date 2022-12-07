@@ -3,11 +3,12 @@ import pandas as pd
 import os
 from DataManagement.DataManagement import (save_data,
                                            load_data,
-                                           data_combinator)
+                                           DataCombinator)
 
 TGT_LOCATION = './test_files/'
 TGT_READ_FIL = './test_files/read_this.pkl'
 TGT_WRITE_FIL = './test_files/write_this.pkl'
+
 
 class DManTest(TestCase):
 
@@ -37,5 +38,3 @@ class DManTest(TestCase):
         expected_cols = 7
         self.assertEqual(rows, expected_rows, f"incorrect data read in, expected {expected_rows} rows, got {rows}")
         self.assertEqual(cols, expected_cols, f"incorrect data read in, expected {expected_cols} rows, got {cols}")
-
-
