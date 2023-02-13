@@ -52,7 +52,10 @@ class DataCombinator:
         :return: dataframe with the necessary additions
         """
 
-        return None
+        df_out = history.copy()
+        df_out['Ticker'] = tic.ticker
+
+        return df_out
 
     def add_new_data_to_historical(self,
                                    historical: pd.DataFrame,

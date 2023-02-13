@@ -1,6 +1,7 @@
 from unittest import TestCase
 import pandas as pd
 import os
+from DataManagement.DataFetch import download_data
 from DataManagement.DataManagement import (save_data,
                                            load_data,
                                            DataCombinator)
@@ -8,6 +9,7 @@ from DataManagement.DataManagement import (save_data,
 TGT_LOCATION = './test_files/'
 TGT_READ_FIL = './test_files/read_this.pkl'
 TGT_WRITE_FIL = './test_files/write_this.pkl'
+TEST_TICKER = 'GOOG'
 
 
 class DManTest(TestCase):
@@ -21,6 +23,9 @@ class DManTest(TestCase):
         self.write_target = TGT_WRITE_FIL
         self.location = TGT_LOCATION
         self.dummy_df = pd.DataFrame({'cats': [1], 'dogs': [0], 'bunnies': [72]})
+        self.combinator = DataCombinator()
+        self.ticker, self.frame, _ = download_data(TEST_TICKER)
+
 
     def test_save_data(self):
 
@@ -41,3 +46,10 @@ class DManTest(TestCase):
         expected_cols = 7
         self.assertEqual(rows, expected_rows, f"incorrect data read in, expected {expected_rows} rows, got {rows}")
         self.assertEqual(cols, expected_cols, f"incorrect data read in, expected {expected_cols} rows, got {cols}")
+
+    def test_reshape_data(self):
+
+        out_frame = self.combinator.reshape_data(self.ticker, self.frame)
+        self.assertEqual(self.frame.shape[1], out_frame.shape[1]-1, 'columns inconsistent when adding ticker')
+        self.assertEqual(self.frame.shape[0], out_frame.shape[0], 'data rows inconsistent when reshaping frame')
+        self.assertTrue('Ticker' in out_frame.columns, 'missing Ticker column for new dataframe')
