@@ -11,6 +11,9 @@ TGT_WRITE_FIL = './test_files/write_this.pkl'
 
 
 class DManTest(TestCase):
+    """
+    tests for the data management class
+    """
 
     def setUp(self) -> None:
 
