@@ -22,9 +22,6 @@ class DManTest(TestCase):
 
     def setUp(self) -> None:
 
-        #cwd = os.getcwd()
-        #self.read_target = f"{cwd}\\{TGT_READ_FIL}"
-        #self.write_target = f"{cwd}\\{TGT_WRITE_FIL}"
         self.read_target = f"{TGT_LOCATION}\\{TGT_READ_FIL}"
         self.write_target = f"{TGT_LOCATION}\\{TGT_WRITE_FIL}"
         self.location = TGT_LOCATION
