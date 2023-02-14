@@ -6,9 +6,9 @@ from DataManagement.DataManagement import (save_data,
                                            load_data,
                                            DataCombinator)
 
-TGT_LOCATION = './test_files/'
-TGT_READ_FIL = './test_files/read_this.pkl'
-TGT_WRITE_FIL = './test_files/write_this.pkl'
+TGT_LOCATION = '\\test_files'
+TGT_READ_FIL = '\\test_files/read_this.pkl'
+TGT_WRITE_FIL = '\\test_files/write_this.pkl'
 TEST_TICKER = 'GOOG'
 
 
@@ -19,9 +19,10 @@ class DManTest(TestCase):
 
     def setUp(self) -> None:
 
-        self.read_target = TGT_READ_FIL
-        self.write_target = TGT_WRITE_FIL
-        self.location = TGT_LOCATION
+        cwd = os.getcwd()
+        self.read_target = f"{cwd}{TGT_READ_FIL}"
+        self.write_target = f"{cwd}{TGT_WRITE_FIL}"
+        self.location = f"{cwd}{TGT_LOCATION}"
         self.dummy_df = pd.DataFrame({'cats': [1], 'dogs': [0], 'bunnies': [72]})
         self.combinator = DataCombinator()
         self.ticker, self.frame, _ = download_data(TEST_TICKER)
