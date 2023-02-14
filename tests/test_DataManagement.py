@@ -6,9 +6,12 @@ from DataManagement.DataManagement import (save_data,
                                            load_data,
                                            DataCombinator)
 
-TGT_LOCATION = '\\test_files'
-TGT_READ_FIL = '\\test_files/read_this.pkl'
-TGT_WRITE_FIL = '\\test_files/write_this.pkl'
+for path, _, files in os.walk(os.getcwd()):
+    if 'read_this.pkl' in files:
+        TGT_LOCATION  = path
+
+TGT_READ_FIL = "read_this.pkl"
+TGT_WRITE_FIL = "write_this.pkl"
 TEST_TICKER = 'GOOG'
 
 
@@ -19,10 +22,12 @@ class DManTest(TestCase):
 
     def setUp(self) -> None:
 
-        cwd = os.getcwd()
-        self.read_target = f"{cwd}{TGT_READ_FIL}"
-        self.write_target = f"{cwd}{TGT_WRITE_FIL}"
-        self.location = f"{cwd}{TGT_LOCATION}"
+        #cwd = os.getcwd()
+        #self.read_target = f"{cwd}\\{TGT_READ_FIL}"
+        #self.write_target = f"{cwd}\\{TGT_WRITE_FIL}"
+        self.read_target = f"{TGT_LOCATION}\\{TGT_READ_FIL}"
+        self.write_target = f"{TGT_LOCATION}\\{TGT_WRITE_FIL}"
+        self.location = TGT_LOCATION
         self.dummy_df = pd.DataFrame({'cats': [1], 'dogs': [0], 'bunnies': [72]})
         self.combinator = DataCombinator()
         self.ticker, self.frame, _ = download_data(TEST_TICKER)
@@ -30,14 +35,15 @@ class DManTest(TestCase):
 
     def test_save_data(self):
 
+
         if os.path.basename(self.write_target) in os.listdir(self.location):
             # clear target file
             os.remove(self.write_target)
         self.assertFalse(os.path.basename(self.write_target) in os.listdir(self.location),
                          f"test file not correctly deleted")
         save_data(self.write_target, self.dummy_df)
-        files = os.listdir(self.location)
-        self.assertTrue(os.path.basename(self.write_target) in files, f"test file not correctly written")
+        location_files = os.listdir(self.location)
+        self.assertTrue(os.path.basename(self.write_target) in location_files, f"test file not correctly written")
 
     def test_load_data(self):
 
