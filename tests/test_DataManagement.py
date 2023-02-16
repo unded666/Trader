@@ -24,7 +24,6 @@ class DManTest(TestCase):
         """
         creates a default set of read and write target locations, plus a consistent
         dataframe to test the DataManagement functions
-        :return:
         """
         self.read_target = f"{TGT_LOCATION}\\{TGT_READ_FIL}"
         self.write_target = f"{TGT_LOCATION}\\{TGT_WRITE_FIL}"
@@ -35,7 +34,10 @@ class DManTest(TestCase):
 
 
     def test_save_data(self):
-
+        """
+        tests the operation of the save_data method by removing the saved target file, writing
+        a new file and verifying the new written file
+        """
 
         if os.path.basename(self.write_target) in os.listdir(self.location):
             # clear target file
