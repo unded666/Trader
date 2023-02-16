@@ -49,6 +49,10 @@ class DManTest(TestCase):
         self.assertTrue(os.path.basename(self.write_target) in location_files, f"test file not correctly written")
 
     def test_load_data(self):
+        """
+        Tests the operation of the load_data method by loading in a known file and verifying the
+        data found within.
+        """
 
         loaded_data = load_data(self.read_target)
         rows, cols = loaded_data.shape
