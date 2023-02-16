@@ -62,6 +62,11 @@ class DManTest(TestCase):
         self.assertEqual(cols, expected_cols, f"incorrect data read in, expected {expected_cols} rows, got {cols}")
 
     def test_reshape_data(self):
+        """
+        Tests the operation of reshape_data by creating a new dataframe using the reshape_data method,
+        and verifying the new dataframe has an extra column, no new or lost rows, and that the new
+        dataframe has an appropriately named 'Ticker' column
+        """
 
         out_frame = self.combinator.reshape_data(self.ticker, self.frame)
         self.assertEqual(self.frame.shape[1], out_frame.shape[1]-1, 'columns inconsistent when adding ticker')
