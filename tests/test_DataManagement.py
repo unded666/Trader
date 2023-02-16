@@ -21,7 +21,11 @@ class DManTest(TestCase):
     """
 
     def setUp(self) -> None:
-
+        """
+        creates a default set of read and write target locations, plus a consistent
+        dataframe to test the DataManagement functions
+        :return:
+        """
         self.read_target = f"{TGT_LOCATION}\\{TGT_READ_FIL}"
         self.write_target = f"{TGT_LOCATION}\\{TGT_WRITE_FIL}"
         self.location = TGT_LOCATION
