@@ -41,7 +41,7 @@ class DataCombinator:
 
         pass
 
-    def reshape_data(self, tic: Ticker, history: pd.DataFrame) -> pd.DataFrame:
+    def add_ticker_to_data(self, tic: Ticker, history: pd.DataFrame) -> pd.DataFrame:
         """
         takes the historical data from the history dataframe and adds a column
         from the ticker object that has the actual ticker, for use in combining
