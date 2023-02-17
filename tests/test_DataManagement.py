@@ -72,3 +72,11 @@ class DManTest(TestCase):
         self.assertEqual(self.frame.shape[1], out_frame.shape[1]-1, 'columns inconsistent when adding ticker')
         self.assertEqual(self.frame.shape[0], out_frame.shape[0], 'data rows inconsistent when reshaping frame')
         self.assertTrue('Ticker' in out_frame.columns, 'missing Ticker column for new dataframe')
+
+    def test_add_new_data_to_historical(self):
+        """
+        tests adding new data to an existing dataset by loading an existing google dataset,
+        and adding to it a dataset that includes more recent data
+        """
+
+        pass
