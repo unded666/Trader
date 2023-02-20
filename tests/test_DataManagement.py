@@ -12,7 +12,7 @@ for path, _, files in os.walk(os.getcwd()):
 
 TGT_READ_FIL = "read_this.pkl"
 TGT_WRITE_FIL = "write_this.pkl"
-TGT_EXTEND_FIL = "extend_this"
+TGT_EXTEND_FIL = "extend_this.pkl"
 TEST_TICKER = 'GOOG'
 
 
