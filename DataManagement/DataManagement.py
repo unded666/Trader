@@ -71,4 +71,6 @@ class DataCombinator:
         :return: combined dataframe
         """
 
-        return None
+        df_out = pd.concat((historical, new_history[new_history.index > historical.index.max()]))
+
+        return df_out
