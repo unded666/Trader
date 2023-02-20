@@ -81,9 +81,10 @@ class DManTest(TestCase):
         and adding to it a dataset that includes more recent data
         """
 
+        test_ticker = 'GOOG'
         base_frame = load_data(self.read_target)
         ext_frame = load_data(self.extension_target)
-        new_frame = self.combinator.add_new_data_to_historical(base_frame, _, ext_frame)
+        new_frame = self.combinator.add_new_data_to_historical(base_frame, test_ticker, ext_frame)
 
         self.assertEqual(new_frame.shape[0], 4657, f"incorrect number of rows added")
         self.assertEqual(new_frame.shape[1], 7, f"new columns not consistently maintained")
