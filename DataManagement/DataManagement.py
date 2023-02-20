@@ -59,7 +59,6 @@ class DataCombinator:
 
     def add_new_data_to_historical(self,
                                    historical: pd.DataFrame,
-                                   new_tic: Ticker,
                                    new_history: pd.DataFrame) -> pd.DataFrame:
         """
         reshapes the new historical data new_history using the ticker object new_tic,
